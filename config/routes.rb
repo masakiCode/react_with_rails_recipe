@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       get 'recipes/index'
       post 'recipes/create'
+      put 'recipes/update'
       get '/show/:id', to: 'recipes#show'
       delete '/destroy/:id', to: 'recipes#destroy'
     end

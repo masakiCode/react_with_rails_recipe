@@ -13,6 +13,12 @@ class Api::V1::RecipesController < ApplicationController
     end
   end
 
+  def update
+    recipe = Recipe.find(params["id"])
+    recipe.update_attributes(recipe_params)
+    respond_with recipe, json: recipe
+  end
+
   def show
     if recipe
      render json: recipe

@@ -80,7 +80,7 @@ class NewRecipe extends React.Component {
                   onChange={this.onChange}
                 />
               </div>
-	      <div className="form-group">
+	     {/* <div className="form-group">
                 <label htmlFor="recipeUrl">Image URL</label>
                 <input
                   type="text"
@@ -90,7 +90,7 @@ class NewRecipe extends React.Component {
                   required
                   onChange={this.onChange}
                 />
-              </div>
+              </div>*/}
               <div className="form-group">
                 <label htmlFor="recipeIngredients">Ingredients</label>
                 <input
