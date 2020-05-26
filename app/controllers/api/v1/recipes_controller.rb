@@ -13,10 +13,16 @@ class Api::V1::RecipesController < ApplicationController
     end
   end
 
+  #PUT api/v1/edit/id
   def update
-    recipe = Recipe.find(params["id"])
-    recipe.update_attributes(recipe_params)
-    respond_with recipe, json: recipe
+    #if UpdateRecipeService.new(@recipe, recipe_params).call
+      recipe = Recipe.find(params[:id])
+      recipe.update_attributes(recipe_params)
+      #render json: recipe
+      respond_with recipe, json: recipe
+    #else
+    #  render json: @recipe.errors, status: :unprocessable_entity
+    #end
   end
 
   def show

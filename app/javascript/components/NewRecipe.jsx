@@ -29,14 +29,14 @@ class NewRecipe extends React.Component {
   onSubmit(event) {
     event.preventDefault();
     const url = "/api/v1/recipes/create";
-    const { name, recipeURL, ingredients, instruction } = this.state;
+    const { name, image, ingredients, instruction } = this.state;
 
-    if (name.length == 0 || ingredients.length == 0 || instruction.length == 0)
+    if (name.length == 0 ||image.length== 0 || ingredients.length == 0 || instruction.length == 0)
       return;
 
     const body = {
       name,
-      recipeURL,
+      image,
       ingredients,
       instruction: instruction.replace(/\n/g, "<br> <br>")
     };
@@ -80,17 +80,17 @@ class NewRecipe extends React.Component {
                   onChange={this.onChange}
                 />
               </div>
-	     {/* <div className="form-group">
+	      <div className="form-group">
                 <label htmlFor="recipeUrl">Image URL</label>
                 <input
                   type="text"
-                  name="recipeURL"
+                  name="image"
                   id="recipeUrl"
                   className="form-control"
                   required
                   onChange={this.onChange}
                 />
-              </div>*/}
+              </div>
               <div className="form-group">
                 <label htmlFor="recipeIngredients">Ingredients</label>
                 <input

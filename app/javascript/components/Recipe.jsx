@@ -4,11 +4,14 @@ import { Link } from "react-router-dom";
 class Recipe extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { recipe: { ingredients: "" } };
+    this.state = { recipe: { ingredients: "", editable: false} }
+    /*this.state = { editable: false}*/
     this.addHtmlEntities = this.addHtmlEntities.bind(this);
     this.deleteRecipe = this.deleteRecipe.bind(this);
+
+    this.handleUpdate = this.handleUpdate.bind(this);
   }
-  
+
   componentDidMount() {
     const {
       match: {
@@ -34,6 +37,38 @@ class Recipe extends React.Component {
       .replace(/&lt;/g, "<")
       .replace(/&gt;/g, ">");
   }
+
+  /*updateRecipe(recipe)
+  {
+    let newRecipes = this.state.recipes.filter((f) => f.id !== recipe.id)
+    newRecipes.push(recipe)
+    this.setState({recipes: newRecipes
+    })
+  }*/
+
+  handleUpdate()
+  {
+    this.setState({
+      editable: !this.state.editable
+    })
+  }
+
+ /* handleUpdate()
+  {
+    const {
+      match: {
+        params: { id }
+      }
+    } = this.props;
+    const url = `/api/v1/edit/${id}`;
+    fetch(url,
+    {
+      method: 'PUT',
+      body: JSON.stringify({recipe: recipe}),
+      headers: { 'Content-Type': "application/json"}
+    }
+  }).then((response) => { this.updateRecipe(recipe)})
+}*/
 
   deleteRecipe() {
     const {
@@ -109,8 +144,11 @@ class Recipe extends React.Component {
               <button type="button" className="btn btn-danger" onClick={this.deleteRecipe}>
                 Delete Recipe
               </button>
+              <Link to="/update" type="button" className="btn custom-button" onClick={this.handleUpdate}>
+                Update Recipe
+              </Link>
             </div>
-          </div>
+        </div>
           <Link to="/recipes" className="btn btn-link">
             Back to recipes
           </Link>
